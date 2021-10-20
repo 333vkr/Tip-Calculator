@@ -26,11 +26,20 @@ body {
   flex-direction: column;
   position: relative;
 }
-
+.initial-price-container,.number-of-people-container{
+  position: relative;
+}
 .initial-details h3 {
   color: hsl(186, 14%, 43%);
   font-size: 1rem;
   margin: 24px 0 0 4px;
+  display: inline-block;
+}
+h3.price-error-msg, h3.people-error-msg{
+  position: absolute;
+  right: 4px;
+  color: 	hsl(0, 100%, 50%);
+  display: none;
 }
 
 /* Bill input box  */
@@ -53,6 +62,7 @@ body {
   color: hsl(184, 14%, 56%);
   /* font-size: 16px; */
 }
+
 .bill-input input[type="number"],
 .number-of-people input[type="number"] {
   width: 88%;
@@ -76,7 +86,6 @@ body {
 .number-of-people input[type="number"]::-webkit-inner-spin-button,
 .number-of-people input[type="number"]::-webkit-outer-spin-button {
   appearance: none;
-  
 }
 
 /* to remove input outline when active  */
@@ -90,6 +99,9 @@ body {
 .number-of-people:focus-within {
   border: 2px solid hsl(172, 67%, 45%);
 }
+
+/* error style */
+
 
 /* Tip percentage radio */
 
@@ -111,11 +123,11 @@ body {
   background-color: hsl(183, 100%, 15%);
   color: hsl(0, 0%, 100%);
 }
-.percent-item:hover{
+.percent-item:hover {
   background-color: hsl(172, 67%, 45%);
   color: hsl(183, 93%, 12%);
 }
-.percent-item input:checked + label{
+.percent-item input:checked + label {
   border-radius: 8px;
   background-color: hsl(172, 75%, 63%);
   color: hsl(183, 93%, 12%);
@@ -160,7 +172,7 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
-.final-detailes button:hover{
+.final-detailes button:hover {
   background-color: hsl(172, 75%, 63%);
   color: hsl(183, 93%, 12%);
 }
@@ -221,6 +233,5 @@ body {
 
   .final-detailes button {
     margin: 38px auto 4px;
-    
   }
 }
