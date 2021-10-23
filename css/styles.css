@@ -100,6 +100,7 @@ h3.price-error-msg, h3.people-error-msg{
   border: 2px solid hsl(172, 67%, 45%);
 }
 
+
 /* error style */
 
 
@@ -122,6 +123,29 @@ h3.price-error-msg, h3.people-error-msg{
   border-radius: 8px;
   background-color: hsl(183, 100%, 15%);
   color: hsl(0, 0%, 100%);
+}
+.custom-percent{
+  width: 92%;
+  height: 35px;
+  font-family: "Space Mono", monospace;
+  font-size: 1.2rem;
+  text-align: right;
+  border-radius: 8px;
+  background-color: hsl(186, 76%, 92%);
+  color: hsl(183, 100%, 15%);
+  -moz-appearance: textfield;
+  border: 2px solid hsl(172, 67%, 45%);
+  /* text-align: right; */
+}
+.custom-percent-error{
+  border: 2px solid hsl(0, 100%, 50%);
+}
+#custom::-webkit-inner-spin-button,
+#custom::-webkit-outer-spin-button{
+  appearance: none;
+}
+#custom:focus{
+  outline: none;
 }
 .percent-item:hover {
   background-color: hsl(172, 67%, 45%);
@@ -171,10 +195,19 @@ h3.price-error-msg, h3.people-error-msg{
   border: 0;
   border-radius: 8px;
   cursor: pointer;
+  
+}
+.final-detailes button:disabled{
+  background-color: hsl(183, 81%, 23%);
+  color: hsl(183, 93%, 12%)
+  
 }
 .final-detailes button:hover {
   background-color: hsl(172, 75%, 63%);
   color: hsl(183, 93%, 12%);
+}
+.no-hover{
+  pointer-events: none;
 }
 .amount-container {
   display: flex;

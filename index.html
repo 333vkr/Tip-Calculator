@@ -26,7 +26,7 @@
     <div class="container">
       <div class="initial-details">
         <div class="initial-price-container">
-          <h3>Bill</h3>
+          <h3 id="label-bill">Bill</h3>
           <h3 class="price-error-msg">Enter valid input</h3>
           <div class="bill-input">
             <i class="fas fa-dollar-sign"></i>
@@ -62,12 +62,12 @@
           </div>
           <div class="percent-item">
             <input type="radio" name="tipPercent" id="custom" value="101" />
-            <label for="custom">Custom</label>
+            <label for="custom" id="custom-label">Custom</label>
           </div>
         </div>
 
         <div class="number-of-people-container">
-          <h3>Number of People</h3>
+          <h3 id="label-of-people">Number of People</h3>
           <h3 class="people-error-msg">Enter valid input</h3>
           <div class="number-of-people">
             <i class="fas fa-user"></i>
@@ -88,7 +88,7 @@
           </div>
           <div><h1 id="total-amount">$0.00</h1></div>
         </div>
-        <button id="submit">CALCULATE</button>
+        <button id="submit" class="submit-button">CALCULATE</button>
       </div>
     </div>
 
