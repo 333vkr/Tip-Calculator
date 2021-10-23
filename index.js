@@ -25,19 +25,6 @@ document.addEventListener(
   true
 );
 
-//retrive initial price value v1.0
-// initialPriceInput.addEventListener(
-//   "change",
-//   function () {
-//     initialPrice = this.value;
-//     calculateBtn.innerText = "CALCULATE";
-//     document.querySelector(".bill-input").style.borderColor =
-//       "hsl(172, 67%, 45%)";
-//     document.querySelector(".price-error-msg").style.display = "none";
-//   },
-//   true
-// );
-
 //retrive initial price value v2.0
 initialPriceInput.addEventListener(
   "input",
@@ -48,7 +35,7 @@ initialPriceInput.addEventListener(
   },
   true
 );
-//thrown error ehen input leaves empty or 0.
+//thrown error wheen price input leaves empty or 0.
 initialPriceInput.addEventListener(
   "blur",
   function (e) {
@@ -61,50 +48,31 @@ initialPriceInput.addEventListener(
 radios.forEach((radio) => {
   radio.addEventListener("click", function (e) {
     selectedPercent = e.target.value;
-    // console.log(e.target.id);
-    // console.log(radio.getAttribute("type"));
     if (e.target.id == "custom") {
       radio.setAttribute("type", "number");
       radio.classList.add("custom-percent");
       radio.value = "";
       radio.placeholder = 0;
       document.querySelector("#custom-label").style.display = "none";
-      radio.addEventListener('input',function(e){
-        selectedPercent= e.target.value;
-        if(selectedPercent == 0 || selectedPercent == '')
-        {
-          radio.classList.add("custom-percent-error");
-        }
-        else
-        {
-          radio.classList.remove("custom-percent-error");
-        }
-        console.log(selectedPercent);
-      },true);
+      radio.addEventListener(
+        "input",
+        function (e) {
+          selectedPercent = e.target.value;
+          if (selectedPercent == 0 || selectedPercent == "") {
+            radio.classList.add("custom-percent-error");
+          } else {
+            radio.classList.remove("custom-percent-error");
+          }
+        },
+        true
+      );
     } else {
-      radios[5].setAttribute("type", "radio");
-      radios[5].classList.remove("percent-item");
-      radios[5].classList.remove("custom-percent");
-      document.querySelector("#custom-label").style.display = "block";
+     resetRadio();
+     e.target.checked = true;
     }
-    console.log(radio.id);
-
     calculateBtn.innerText = "CALCULATE";
   });
 });
-
-//retrive Number Of People Value v1.0
-// numberOfPeopleInput.addEventListener(
-//   "change",
-//   function () {
-//     numberOfPeople = this.value;
-//     calculateBtn.innerText = "CALCULATE";
-//     document.querySelector(".number-of-people").style.borderColor =
-//       "hsl(172, 67%, 45%)";
-//     document.querySelector(".people-error-msg").style.display = "none";
-//   },
-//   true
-// );
 
 //retrive Number of People Value v2.0
 numberOfPeopleInput.addEventListener(
@@ -116,7 +84,7 @@ numberOfPeopleInput.addEventListener(
   },
   true
 );
-//throws an error when input leaves empty or 0.
+//throws an error when people input leaves empty or 0.
 numberOfPeopleInput.addEventListener(
   "blur",
   function (e) {
@@ -130,7 +98,7 @@ document.addEventListener("keydown", (Event) => {
   const keyName = Event.key;
 
   if (keyName === "Enter") {
-    if (initialPrice == "" || numberOfPeople == "") {
+    if (initialPrice == "" || numberOfPeople == "" || selectedPercent == 0) {
       emptyInputValidation();
     } else {
       calculateBill(initialPrice, selectedPercent, numberOfPeople);
@@ -142,7 +110,7 @@ document.addEventListener("keydown", (Event) => {
 
 //press button to result
 calculateBtn.addEventListener("click", function () {
-  if (initialPrice == "" || numberOfPeople == "") {
+  if (initialPrice == "" || numberOfPeople == "" || selectedPercent == 0) {
     emptyInputValidation();
   } else {
     calculateBill(initialPrice, selectedPercent, numberOfPeople);
@@ -151,7 +119,10 @@ calculateBtn.addEventListener("click", function () {
   }
 });
 
-//FUNCTION SECTION
+
+
+
+//*****************FUNCTION SECTION***********************//
 
 // Funtion to validate intial input
 function initialPriceValidation(initialPrice) {
@@ -221,10 +192,21 @@ function toggleButton() {
     initialPrice = 0;
     selectedPercent = 5;
     numberOfPeople = 0;
+    resetRadio();
+    radios[0].checked = true;
     calculateBtn.innerText = "CALCULATE";
   } else {
     calculateBtn.innerText = "RESET";
   }
+}
+
+//reset radio
+function resetRadio() {
+  radios[5].setAttribute("type", "radio");
+  radios[5].classList.remove("percent-item");
+  radios[5].classList.remove("custom-percent");
+  radios[5].classList.remove("custom-percent-error");
+  document.querySelector("#custom-label").style.display = "block";
 }
 
 //validate input values are valid or not while pressing calculate button or press enter
@@ -240,6 +222,9 @@ function emptyInputValidation() {
     document.querySelector(".number-of-people").style.borderColor =
       "hsl(0,100%,50%)";
     document.querySelector(".people-error-msg").style.display = "inline-block";
+  } else if (selectedPercent == 0) {
+    radios[5].classList.add("custom-percent-error");
+    radios[5].focus();
   } else {
     document.querySelector(".bill-input").style.borderColor = "hsl(0,100%,50%)";
     document.querySelector(".price-error-msg").style.display = "inline-block";
@@ -248,7 +233,6 @@ function emptyInputValidation() {
     document.querySelector(".people-error-msg").style.display = "inline-block";
   }
 }
-// Remaining
-//************ */
-// 1. Validation on custom percentage
-// 2.Custom Percentage ✔️
+
+
+
